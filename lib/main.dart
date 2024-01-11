@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:second_app/welcome.dart';
+import 'package:second_app/start_screen.dart';
 
 void main() {
   runApp(
@@ -12,10 +12,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: WelcomePage(),
+        body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.deepPurple,
+                  Colors.deepPurple.shade300,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: const StartScreen()),
       ),
     );
   }
