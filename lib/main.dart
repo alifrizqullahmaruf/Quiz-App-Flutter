@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:second_app/start_screen.dart';
+import 'package:second_app/quiz.dart';
 
 void main() {
   runApp(
@@ -12,22 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.deepPurple,
-                  Colors.deepPurple.shade300,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-            child: const StartScreen()),
-      ),
-    );
+    return const Quiz();
   }
 }
