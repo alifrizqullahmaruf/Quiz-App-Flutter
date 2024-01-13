@@ -10,6 +10,16 @@ class QuiestionScreen extends StatefulWidget {
 class _QuiestionScreenState extends State<QuiestionScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Welcome to Question Screen');
+    return const Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "Welcome to the Question Screen",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          )
+        ],
+      ),
+    );
   }
 }
