@@ -3,8 +3,10 @@ import 'package:second_app/data/questions.dart';
 import 'package:second_app/models/answer_button.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({super.key});
+  const QuestionScreen({super.key, required this.onSelectAnswer});
 
+  // membuat fungsi untuk menjalankan fungsi pada page lain
+  final void Function(String asnwer) onSelectAnswer;
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
@@ -12,7 +14,9 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   var currentQuestionsIndex = 0;
 
-  void answerButtons() {  
+  void answerQuestion(String selectedAnswer) {
+    // digunnakan untuk menerima satu parameter
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
       currentQuestionsIndex++;
     });
@@ -20,7 +24,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-  var currentQuestion = questions[currentQuestionsIndex];
+    var currentQuestion = questions[currentQuestionsIndex];
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -41,7 +45,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
               height: 30,
             ),
             ...currentQuestion.getShuffleAnswers().map((answer) {
-              return AnswerButton(answerText: answer, onTap: answerButtons);
+              return AnswerButton(
+                  answerText: answer,
+                  onTap: () {
+                    answerQuestion(answer);
+                  });
             }),
           ],
         ),
