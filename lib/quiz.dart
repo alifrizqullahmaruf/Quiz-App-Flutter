@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:second_app/question_screen.dart';
+import 'package:second_app/result_screen.dart';
 import 'package:second_app/start_screen.dart';
+import 'package:second_app/data/questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -11,7 +13,7 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   // buat variabel berisi item jawaban yang di click selectedAnswers
-  final List<String> selectedAnswers = [];
+  List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
   void switchScreen() {
@@ -23,6 +25,13 @@ class _QuizState extends State<Quiz> {
   // buat fungsi masukin answe ke list variabel selectedAnswers
   void choseAnswer(String answer) {
     selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        selectedAnswers = [];
+        activeScreen = 'result-screen';
+      });
+    }
   }
 
   @override
@@ -30,7 +39,12 @@ class _QuizState extends State<Quiz> {
     Widget screenWidget = StartScreen(switchScreen);
 
     if (activeScreen == 'question-screen') {
-      screenWidget = QuestionScreen(onSelectAnswer: choseAnswer,);
+      screenWidget = QuestionScreen(
+        onSelectAnswer: choseAnswer,
+      );
+    }
+    if (activeScreen == 'result-screen') {
+      screenWidget = ResultScreen(chosenAnswers: selectedAnswers);
     }
 
     return MaterialApp(
