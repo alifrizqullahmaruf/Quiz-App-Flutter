@@ -26,6 +26,7 @@ class _QuizState extends State<Quiz> {
   void choseAnswer(String answer) {
     selectedAnswers.add(answer);
 
+    // membuat logic for page tampilan sehingga jetika tampilan sudah sama dengan index maka akan pindah ke page rasult
     if (selectedAnswers.length == questions.length) {
       setState(() {
         selectedAnswers = [];
@@ -43,6 +44,7 @@ class _QuizState extends State<Quiz> {
         onSelectAnswer: choseAnswer,
       );
     }
+    // ini merubah page ke page result 
     if (activeScreen == 'result-screen') {
       screenWidget = ResultScreen(chosenAnswers: selectedAnswers);
     }
