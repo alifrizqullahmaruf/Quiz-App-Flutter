@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:second_app/data/questions.dart';
 
 class ResultScreen extends StatelessWidget {
   ResultScreen({super.key, required this.chosenAnswers});
 
-
   List<String> chosenAnswers;
 
+  // memberikan ringkasan hasil data yang sudah di inputkan oleh user dengan kunci jawaban
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summary = [];
+
+    
+    for (var i = 0; i < chosenAnswers.length; i++) {
+      summary.add({
+        'question-index':i,
+        'question':questions[i].text,
+        'correct_answer':questions[0].text,
+        'user_answer': chosenAnswers[i]
+      },);
+    }
+    return summary;
+  }
 
   @override
   Widget build(BuildContext context) {
