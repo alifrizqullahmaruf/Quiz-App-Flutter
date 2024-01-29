@@ -29,7 +29,6 @@ class _QuizState extends State<Quiz> {
     // membuat logic for page tampilan sehingga jetika tampilan sudah sama dengan index maka akan pindah ke page rasult
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
         activeScreen = 'result-screen';
       });
     }
