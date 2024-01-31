@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:second_app/data/questions.dart';
-import 'package:second_app/question_summary.dart';
+import 'package:second_app/question_summary/question_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
     super.key,
     required this.chosenAnswers,
   });
-
+  
   final List<String> chosenAnswers;
 
   List<Map<String, Object>> getSummaryData() {

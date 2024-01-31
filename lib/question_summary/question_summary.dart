@@ -15,7 +15,7 @@ class QuestionsSummary extends StatelessWidget {
             (data) {
               return Row(
                 children: [
-                  Text(((data['question_index'] as int) + 1).toString()),
+                  Text(((data['question_index'] as int) + 1).toString(),style: const TextStyle(backgroundColor: Colors.purple,),),
                   Expanded(
                     child: Column(
                       children: [
@@ -29,8 +29,8 @@ class QuestionsSummary extends StatelessWidget {
                         const SizedBox(
                           height: 5,
                         ),
-                        Text(data['user_answer'] as String),
-                        Text(data['correct_answer'] as String),
+                        Text(data['user_answer'] as String, style: TextStyle(color: Colors.purple.shade700),),
+                        Text(data['correct_answer'] as String,style: TextStyle(color: Colors.blue.shade700),)
                       ],
                     ),
                   ),
