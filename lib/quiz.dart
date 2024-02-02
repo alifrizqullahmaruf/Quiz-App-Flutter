@@ -12,7 +12,7 @@ class Quiz extends StatefulWidget {
     return _QuizState();
   }
 }
-
+  // penggunaan tanda "_" di depan class menunjukan bahwa class tersebut bersifat private
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';

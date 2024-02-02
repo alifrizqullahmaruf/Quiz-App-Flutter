@@ -8,10 +8,10 @@ class ResultsScreen extends StatelessWidget {
     super.key,
     required this.chosenAnswers,
   });
-  
+
   final List<String> chosenAnswers;
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < chosenAnswers.length; i++) {
@@ -30,11 +30,12 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
-    final numCorrectQuestions = summaryData.where((data) {
-      return data['user_answer'] == data['correct_answer'];
-    }).length;
+    final numCorrectQuestions = summaryData
+        .where(
+          (data) => data['user_answer'] == data['correct_answer'], // menambahkan "=>" membuatnya lebih singkat dan rapiih
+        )
+        .length;
 
     return SizedBox(
       width: double.infinity,
@@ -44,7 +45,11 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!', style: TextStyle(fontSize: 23, color: Colors.white70,),
+              'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+              style: TextStyle(
+                fontSize: 23,
+                color: Colors.white70,
+              ),
             ),
             const SizedBox(
               height: 30,
@@ -55,9 +60,7 @@ class ResultsScreen extends StatelessWidget {
             ),
             TextButton.icon(
               onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white
-              ),
+              style: TextButton.styleFrom(foregroundColor: Colors.white),
               label: const Text('Restart Quiz!'),
               icon: const Icon(Icons.restart_alt_rounded),
             )
