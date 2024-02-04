@@ -14,15 +14,20 @@ class Quiz extends StatefulWidget {
 }
   // penggunaan tanda "_" di depan class menunjukan bahwa class tersebut bersifat private
 class _QuizState extends State<Quiz> {
+  // List untuk menyimpan jawaban yang dipilih oleh pengguna
   List<String> selectedAnswers = [];
+  
+  // Variabel untuk melacak tampilan aktif (start, questions, atau results)
   var activeScreen = 'start-screen';
 
+  // Fungsi untuk beralih ke tampilan pertanyaan
   void switchScreen() {
     setState(() {
       activeScreen = 'questions-screen';
     });
   }
 
+  // Fungsi untuk memilih jawaban dan beralih ke tampilan hasil jika semua pertanyaan telah dijawab
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
 
@@ -33,22 +38,27 @@ class _QuizState extends State<Quiz> {
     }
   }
 
+  // Metode build untuk menentukan tampilan sesuai dengan layar yang aktif
   @override
   Widget build(context) {
+    // Widget awal adalah StartScreen dengan fungsi switchScreen
     Widget screenWidget = StartScreen(switchScreen);
 
+    // Jika layar aktif adalah 'questions-screen', tampilkan QuestionScreen
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionScreen(
         onSelectAnswer: chooseAnswer,
       );
     }
 
+    // Jika layar aktif adalah 'results-screen', tampilkan ResultsScreen dengan jawaban yang dipilih
     if (activeScreen == 'results-screen') {
       screenWidget = ResultsScreen(
         chosenAnswers: selectedAnswers,
       );
     }
 
+    // Mengembalikan MaterialApp dengan Scaffold dan Container untuk menentukan latar belakang gradient
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -62,7 +72,7 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: screenWidget,
+          child: screenWidget, // Menampilkan widget yang sesuai dengan layar aktif
         ),
       ),
     );
